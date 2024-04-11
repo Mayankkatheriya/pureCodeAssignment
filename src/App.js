@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "flatpickr/dist/themes/confetti.css";
+import Widget from "./pages/Widget/Widget.js";
+import { HelmetProvider } from "react-helmet-async";
+import TopbarAdmin from "./components/layout/admin/TopbarAdmin/index.js";
+import MenuAdmin from "./components/layout/admin/Navbar.js";
+import Footer from "./components/layout/Footer.js";
+import BackToTop from "./components/layout/BackToTop.js";
+import { LayoutProvider } from "./context/useLayoutContext.js";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HelmetProvider>
+      <LayoutProvider>
+        <TopbarAdmin />
+        <MenuAdmin />
+        <BackToTop />
+        <Widget />
+        <Footer />
+      </LayoutProvider>
+    </HelmetProvider>
   );
 }
 

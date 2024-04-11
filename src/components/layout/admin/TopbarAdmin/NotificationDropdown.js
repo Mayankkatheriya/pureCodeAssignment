@@ -1,8 +1,13 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { LuBell } from "react-icons/lu";
 import { SimplebarReactClient } from "../../../index";
 
 const NotificationDropdown = ({ notifications }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
   /**
    * Get time since
    */
@@ -55,6 +60,7 @@ const NotificationDropdown = ({ notifications }) => {
       <button
         id="hs-dropdown-with-header"
         type="button"
+        onClick={toggleDropdown}
         className="hs-dropdown-toggle inline-flex h-10 w-10 flex-shrink-0 items-center justify-center gap-2 rounded-full bg-default-100 align-middle text-xs font-medium text-default-700 transition-all hover:text-primary"
       >
         <LuBell size={24} />
@@ -63,7 +69,7 @@ const NotificationDropdown = ({ notifications }) => {
           2
         </span>
       </button>
-      <div className="hs-dropdown-menu duration mt-2 hidden min-w-[20rem] rounded-lg border border-default-200 bg-white opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:bg-default-50">
+      <div className={`hs-dropdown-menu ${isOpen ? 'opacity-100' : 'opacity-0 hidden'} duration mt-2 min-w-[20rem] rounded-lg border border-default-200 bg-white  shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:bg-default-50`}>
         <div className="flex items-center justify-between px-4 py-2">
           <h6 className="text-sm font-medium"> Notification</h6>
           <a href="" className="text-default-500">

@@ -1,7 +1,7 @@
 /* Custom css */
-@import 'react-quill/dist/quill.snow.css';
-@import 'react-quill/dist/quill.bubble.css';
-@import 'gridjs/dist/theme/mermaid.min.css';
+@import "react-quill/dist/quill.snow.css";
+@import "react-quill/dist/quill.bubble.css";
+@import "gridjs/dist/theme/mermaid.min.css";
 @import "flatpickr/dist/flatpickr.min.css";
 @import "custom/_reboot.css";
 @import "custom/_navbar.css";
@@ -22,3 +22,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hs-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  z-index: 10;
+}

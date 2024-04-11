@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { LuHome, LuLogOut, LuNewspaper, LuUser } from "react-icons/lu";
 import { avatar1Img } from "../../../../assets/data/images";
 import { cn } from "../../../utils/cn-merge";
@@ -27,11 +27,17 @@ const profileDropdownItems = [
 ];
 
 const ProfileDropdown = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <div className="hs-dropdown relative inline-flex ">
       <button
         id="hs-dropdown-with-header"
         type="button"
+        onClick={toggleDropdown}
         className="hs-dropdown-toggle inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-full align-middle text-xs font-medium text-default-700 transition-all"
       >
         <img
@@ -44,7 +50,7 @@ const ProfileDropdown = () => {
           <p className="mt-1 text-xs text-default-500">Admin</p>
         </div>
       </button>
-      <div className="hs-dropdown-menu duration mt-2 hidden min-w-[12rem] rounded-lg border border-default-200 bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:bg-default-50">
+      <div className={`hs-dropdown-menu ${isOpen ? "opacity-100" : "opacity-0 hidden"} duration mt-2 min-w-[12rem] rounded-lg border border-default-200 bg-white p-2  shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:bg-default-50`}>
         {profileDropdownItems.map((item, idx) => {
           const Icon = item.icon;
           const lastItem = profileDropdownItems.length - 1 == idx;

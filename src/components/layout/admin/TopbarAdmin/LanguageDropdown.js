@@ -1,4 +1,10 @@
-import { germanyImg, italyImg, russiaImg, spainImg } from "../../../../assets/data/images";
+import React, { useState } from "react";
+import {
+  germanyImg,
+  italyImg,
+  russiaImg,
+  spainImg,
+} from "../../../../assets/data/images";
 import { LuGlobe } from "react-icons/lu";
 
 const languages = [
@@ -21,16 +27,25 @@ const languages = [
 ];
 
 const LanguageDropdown = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className="hs-dropdown relative inline-flex [--placement:bottom-right]">
       <button
         id="hs-dropdown-with-header"
         type="button"
         className="hs-dropdown-toggle inline-flex h-10 w-10 flex-shrink-0 items-center justify-center gap-2 rounded-full bg-default-100 align-middle text-xs font-medium text-default-700 transition-all hover:text-primary"
+        onClick={toggleDropdown}
       >
         <LuGlobe size={24} />
       </button>
-      <div className="hs-dropdown-menu duration mt-2 hidden min-w-[12rem] rounded-lg border border-default-200 bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:bg-default-50">
+      <div
+        className={`hs-dropdown-menu duration mt-2 ${isOpen ? "opacity-100" : "opacity-0 hidden"} min-w-[12rem] rounded-lg border border-default-200 bg-white p-2 shadow-md transition-opacity dark:bg-default-50`}
+      >
         {languages.map((language) => (
           <button
             key={language.name}
